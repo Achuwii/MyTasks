@@ -1,0 +1,61 @@
+<div class="tasks">
+  <div class="tasks__search">
+    <img src="search.svg" alt="Search" />
+    <input
+      type="text"
+      placeholder="Search"
+      [value]="searchTerm()"
+      (input)="onSearchChange($any($event.target).value)"
+      class="input__search"
+      aria-label="Search tasks"
+    />
+  </div>
+
+  <div class="tasks__actions">
+    <div class="tasks__actions-filter" (click)="toggleFilterDropdown()">
+      Filter:
+      <img src="filter.svg" alt="Filter" class="tasks__actions-filter-icon"/>
+    </div>
+    @if (isFilterDropdownOpen()) {
+      <div class="tasks__filter-dropdown" (click)="$event.stopPropagation()" #filterDropdown>
+        @for (status of statuses; track status) {
+          <label class="tasks__filter-option">
+            <input
+              type="checkbox"
+              [checked]="isStatusSelected(status)"
+              (change)="filterTasksByStatus(status)"
+            />
+            <span>{{ status }}</span>
+          </label>
+        }
+      </div>
+    }
+    <div class="tasks__actions-sort">
+      <label for="sort-select" class="tasks__actions-sort-label">Sort by:</label>
+      <app-custom-select
+        id="sort-select"
+        class="tasks__actions-sort-select"
+        [options]="sortOptions"
+        [value]="sortType()"
+        (valueChange)="sortTasks($event)"
+        ariaLabel="Sort tasks"
+      />
+    </div>
+  </div>
+
+  <div class="tasks__list">
+    @if (filteredTasks().length === 0) {
+      <p class="tasks__empty">No tasks found</p>
+    } @else {
+      @for (task of filteredTasks(); track task.id) {
+        <app-task-item [task]="task" />
+      }
+    }
+  </div>
+
+  <app-pagination
+    [currentPage]="currentPage()"
+    [totalPages]="totalPages()"
+    (pageChange)="setCurrentPage($event)"
+  />
+</div>

@@ -1,0 +1,25 @@
+<div class="task-item">
+  <div class="task-item__content">
+    <div class="task-item__info">
+      <h3 class="task-item__title">{{ truncatedTitle() }}</h3>
+      <div class="task-item__description-wrapper">
+        @if (task().description) {
+          <p class="task-item__description">{{ task().description }}</p>
+        } @else {
+          <p class="task-item__description task-item__description--empty">
+            There is no description for this task
+          </p>
+        }
+      </div>
+      <app-task-status [status]="task().status" />
+    </div>
+  </div>
+  <button
+    type="button"
+    class="task-item__details"
+    aria-label="View task details"
+    (click)="goToDetails()"
+  >
+    Details
+  </button>
+</div>

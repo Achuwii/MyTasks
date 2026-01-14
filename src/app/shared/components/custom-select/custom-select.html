@@ -1,0 +1,35 @@
+<div class="custom-select">
+  <button
+    type="button"
+    class="custom-select__trigger"
+    [id]="id()"
+    [attr.aria-expanded]="isOpen()"
+    (click)="toggleDropdown()"
+  >
+    <span class="custom-select__value">
+      {{ displayText() }}
+    </span>
+    <span class="custom-select__arrow" aria-hidden="true">▼</span>
+  </button>
+
+  @if (isOpen()) {
+    <ul
+      class="custom-select__dropdown"
+      role="listbox"
+      [attr.aria-labelledby]="id()"
+    >
+      @for (option of options(); track option.value; let i = $index) {
+        <li
+          class="custom-select__option"
+          [class.custom-select__option--selected]="isOptionSelected(option)"
+          role="option"
+          [attr.aria-selected]="isOptionSelected(option)"
+          (click)="selectOption(option)"
+          (mouseenter)="focusedIndex.set(i)"
+        >
+          {{ option.label }}
+        </li>
+      }
+    </ul>
+  }
+</div>

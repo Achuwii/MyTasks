@@ -1,0 +1,62 @@
+@if (showPagination()) {
+  <div class="pagination">
+    <button
+      type="button"
+      class="pagination__button"
+      [disabled]="isPreviousDisabled()"
+      (click)="handlePrevious()"
+      aria-label="Previous page"
+    >
+      <img src="arrow-left.svg" alt="Previous" />
+    </button>
+
+    <div class="pagination__pages">
+      @if (showFirstPage()) {
+        <button
+          type="button"
+          class="pagination__page"
+          (click)="setCurrentPage(1)"
+        >
+          1
+        </button>
+        @if (showFirstEllipsis()) {
+          <span class="pagination__ellipsis">...</span>
+        }
+      }
+
+      @for (page of pageNumbers(); track page) {
+        <button
+          type="button"
+          class="pagination__page"
+          [class.pagination__page--active]="isPageActive(page)"
+          (click)="setCurrentPage(page)"
+        >
+          {{ page }}
+        </button>
+      }
+
+      @if (showLastPage()) {
+        @if (showLastEllipsis()) {
+          <span class="pagination__ellipsis">...</span>
+        }
+        <button
+          type="button"
+          class="pagination__page"
+          (click)="setCurrentPage(totalPages())"
+        >
+          {{ totalPages() }}
+        </button>
+      }
+    </div>
+
+    <button
+      type="button"
+      class="pagination__button"
+      [disabled]="isNextDisabled()"
+      (click)="handleNext()"
+      aria-label="Next page"
+    >
+      <img src="arrow-right.svg" alt="Next" />
+    </button>
+  </div>
+}

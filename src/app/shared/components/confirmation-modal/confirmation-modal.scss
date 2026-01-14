@@ -1,0 +1,53 @@
+.confirmation-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 320px;
+  max-width: 400px;
+
+  &__title {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  &__message {
+    margin: 0;
+    font-size: 14px;
+    color: #374151;
+    line-height: 1.5;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 8px;
+  }
+
+  &__button {
+    padding: 10px 20px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+  
+    &--secondary {
+      background-color: #e5e7eb;
+  
+      &:hover {
+        background-color: #d1d5db;
+      }
+    }
+  
+    &--danger {
+      background-color: #ef4444;
+      color: #ffffff;
+  
+      &:hover {
+        background-color: #dc2626;
+      }
+    }
+  }
+}

@@ -1,0 +1,91 @@
+<div class="task-details">
+  <button
+    type="button"
+    class="task-details__back"
+    aria-label="Go back to tasks list"
+    (click)="goToHome()"
+  >
+    <img src="back.svg" alt="Back" />
+    Back
+  </button>
+
+  @if (task(); as currentTask) {
+    <h1 class="task-details__title">
+      {{ currentTask.title }}
+    </h1>
+
+    <app-task-status [status]="currentTask.status" />
+
+    @if (currentTask.description) {
+      <p class="task-details__description">
+        {{ currentTask.description }}
+      </p>
+    } @else {
+      <p class="task-details__description task-details__description--empty">
+        No description provided for this task.
+      </p>
+    }
+
+    <p class="task-details__created-at">
+      Created on {{ currentTask.createdAt | date: 'MMM d, y h:mm a' }}
+    </p>
+
+    <div class="task-details__actions">
+      <button
+        type="button"
+        class="task-details__button task-details__button--edit"
+        (click)="openEditModal()"
+      >
+        Edit
+      </button>
+      <button
+        type="button"
+        class="task-details__button task-details__button--delete"
+        (click)="openDeleteModal()"
+      >
+        Delete
+      </button>
+    </div>
+
+    @if (isEditModalOpen()) {
+      <div
+        class="task-details__modal-backdrop"
+        (click)="isEditModalOpen.set(false)"
+      ></div>
+      <div
+        class="task-details__modal"
+        (click)="$event.stopPropagation()"
+      >
+        <app-task-form
+          [mode]="'edit'"
+          [task]="currentTask"
+          (submitted)="editTask($event)"
+          (cancelled)="isEditModalOpen.set(false)"
+        />
+      </div>
+    }
+
+    @if (isDeleteModalOpen()) {
+      <div
+        class="task-details__modal-backdrop"
+        (click)="isDeleteModalOpen.set(false)"
+      ></div>
+      <div
+        class="task-details__modal"
+        (click)="$event.stopPropagation()"
+      >
+        <app-confirmation-modal
+          title="Delete Task"
+          [message]="getDeleteMessage(currentTask.title)"
+          (deleteResponse)="onDeleteConfirm($event)"
+        />
+      </div>
+    }
+  } @else {
+    <p class="task-details__not-found">
+      Task not found.
+    </p>
+  }
+</div>
+
+

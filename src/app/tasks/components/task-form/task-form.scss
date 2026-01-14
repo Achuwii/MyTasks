@@ -1,0 +1,81 @@
+.task-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  &__title {
+    margin: 0 0 8px 0;
+    font-size: 20px;
+    font-weight: 700;
+    color: #111827;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #374151;
+  }
+
+  &__input, &__textarea, &__select {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #d1d5db;
+    font-size: 14px;
+    background-color: #ffffff;
+    color: #111827;
+  }
+
+  &__textarea {
+    resize: vertical;
+  }
+
+  &__select {
+    cursor: pointer;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 8px;
+  }
+
+  &__button {
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+
+    &--primary {
+      background-color: #3b82f6;
+      color: #ffffff;
+
+      &:hover {
+        background-color: #2563eb;
+      }
+    }
+
+    &--secondary {
+      background-color: #e5e7eb;
+      color: #111827;
+
+      &:hover {
+        background-color: #d1d5db;
+      }
+    }
+  }
+}

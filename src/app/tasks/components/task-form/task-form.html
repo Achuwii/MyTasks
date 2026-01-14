@@ -1,0 +1,56 @@
+<div class="task-form">
+  <h2 class="task-form__title">
+    {{ mode() === 'add' ? 'Add Task' : 'Edit Task' }}
+  </h2>
+
+  <form class="task-form__body" (submit)="submitForm(); $event.preventDefault()">
+    <div class="task-form__field">
+      <label for="task-title" class="task-form__label">Title</label>
+      <input
+        id="task-title"
+        type="text"
+        class="task-form__input"
+        [formField]="taskForm.title"
+      />
+    </div>
+
+    <div class="task-form__field">
+      <label for="task-description" class="task-form__label">Description</label>
+      <textarea
+        id="task-description"
+        class="task-form__textarea"
+        [formField]="taskForm.description"
+        rows="4"
+      ></textarea>
+    </div>
+
+    <div class="task-form__field">
+      <label for="task-status" class="task-form__label">Status</label>
+      <app-custom-select
+        id="task-status"
+        [options]="statusOptions"
+        [value]="formModel().status"
+        (valueChange)="onStatusChange($event)"
+        ariaLabel="Task status"
+      />
+    </div>
+
+    <div class="task-form__actions">
+      <button
+        type="button"
+        class="task-form__button task-form__button--secondary"
+        (click)="cancel()"
+      >
+        Cancel
+      </button>
+      <button
+        type="submit"
+        class="task-form__button task-form__button--primary"
+      >
+        {{ mode() === 'add' ? 'Add Task' : 'Save Changes' }}
+      </button>
+    </div>
+  </form>
+</div>
+
+

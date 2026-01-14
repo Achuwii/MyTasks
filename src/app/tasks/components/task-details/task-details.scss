@@ -1,0 +1,120 @@
+.task-details {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  &__back {
+    color: #111827;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__title {
+    font-size: 24px;
+    font-weight: 700;
+    word-break: break-all;
+  }
+
+  &__description {
+    font-size: 16px;
+    color: #374151;
+
+    &--empty {
+      font-style: italic;
+      color: #6b7280;
+    }
+  }
+
+  &__created-at {
+    color: #77808A;
+  }
+
+  &__actions {
+    display: flex;
+    margin-left: auto;
+    border: 1px solid #e5e7eb;
+    background: white;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  &__button {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    background: transparent;
+    transition: background-color 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+
+    &--edit {
+      border-right: 1px solid #e5e7eb;
+    }
+
+    @media (min-width: 768px) {
+      &--edit {
+        background-color: #3b82f6;
+        color: #ffffff;
+
+        &:hover {
+          background-color: #2563eb;
+        }
+      }
+  
+      &--delete {
+        background-color: #ef4444;
+        color: #ffffff;
+
+        &:hover {
+          background-color: #dc2626;
+        }
+      }
+    }
+  }
+
+  &__not-found {
+    font-size: 16px;
+    color: #6b7280;
+  }
+
+  &__modal {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 30;
+    pointer-events: none;
+    margin: 0 5%;
+  
+    & > * {
+      pointer-events: auto;
+    }
+  
+    & > app-task-form, & > app-confirmation-modal {
+      background: #ffffff;
+      padding: 24px 20px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      width: 100%;
+      max-width: 480px;
+    }
+
+    &-backdrop {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.4);
+      z-index: 20;
+    }
+  }
+}

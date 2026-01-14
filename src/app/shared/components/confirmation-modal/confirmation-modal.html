@@ -1,0 +1,21 @@
+<div class="confirmation-modal">
+  <h2 class="confirmation-modal__title">{{ title() }}</h2>
+  <p class="confirmation-modal__message">{{ message() }}</p>
+  <div class="confirmation-modal__actions">
+    <button
+      type="button"
+      class="confirmation-modal__button confirmation-modal__button--secondary"
+      (click)="closeModal()"
+    >
+      Cancel
+    </button>
+    <button
+      type="button"
+      class="confirmation-modal__button confirmation-modal__button--danger"
+      (click)="confirmDelete()"
+    >
+      Confirm
+    </button>
+  </div>
+</div>
+
